@@ -1,0 +1,8 @@
+---
+
+dependencies:
+  #- { role: nginx }
+  - { role: rvm, rvm_user: "{{ jekyll.user }}", ruby_version: "{{ ruby.global }}" }
+
+
+

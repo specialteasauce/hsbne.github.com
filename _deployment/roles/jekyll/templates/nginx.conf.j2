@@ -1,0 +1,14 @@
+server {
+
+  listen 80;
+
+  server_name {{ jekyll.hostname }};
+
+  # path to jekyll's public directory
+  set $public {{ jekyll.path }}/_site;
+
+  location / {
+    root $public;
+  }
+}
+

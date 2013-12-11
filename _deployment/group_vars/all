@@ -1,0 +1,10 @@
+user: vagrant
+hostname: hsbne.dev.com
+
+jekyll:
+  user: vagrant
+  path: /vagrant
+  hostname: hsbne.dev.com
+
+ruby:
+  global: 2.0.0-p247
