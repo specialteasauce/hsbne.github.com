@@ -13,19 +13,24 @@
     ruby_version: "{{ ruby.global }}"
     bundler_path: "{{ jekyll.path }}"
 
-#- name: Install Jekyll Nginx.conf
-  #template: src='nginx.conf.j2' dest='/etc/nginx/conf.d/nginx.conf'
-  #notify: restart nginx
+- name: Install Jekyll Nginx.conf
+  template: src='nginx.conf.j2' dest='/etc/nginx/conf.d/nginx.conf'
+  notify: restart nginx
 
-- name: Kill Jekyll
-  command: pkill -9 -f jekyll
-  ignore_errors: true
+- name: Install Gulp
+  npm: name={{ item }} path={{ jekyll.path }} global=yes
+  with_items:
+    - gulp
+    - forever
 
-- name: Start Jekyll
-  sudo_user: "root"
-  command: /home/{{ jekyll.user }}/.rvm/bin/rvm {{ ruby.global }} exec bundle exec jekyll serve --watch --port 80 --detach chdir={{ jekyll.path  }}
-  async: 45
-  poll: 0
-  register: jekyll_startup
+- name: Install NPM Packages
+  command: npm install
 
-- debug: msg="{{ jekyll_startup }}"
+#- name: Check if running
+  #command: "{{ jekyll.path }}/node_modules/.bin/forever list"
+  #register: forever_list
+  #changed_when: false
+
+#- name: Start Gulp
+  #command: npm start chdir={{ jekyll.path }}
+  #when: "forever_list.stdout.find('node_modules/.bin/gulp') == -1"

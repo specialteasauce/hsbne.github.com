@@ -1,0 +1,17 @@
+{
+  "name": "HSBNE.org",
+  "version": "0.1.0",
+  "description": "HSBNE Website",
+  "main": "index.html",
+  "dependencies": {
+    "gulp-jekyll": "0.0.0",
+    "gulp": "^3.6.1",
+    "gulp-shell": "^0.2.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "forever start gulp",
+    "stop": "forever stopall"
+  },
+  "homepage": "http://hsbne.org"
+}

@@ -1,0 +1,11 @@
+- name: Install python-software-properties
+  apt: pkg=python-software-properties state=present update_cache=yes
+
+- name: Add Chris Lea node.js repository
+  apt_repository: repo='ppa:chris-lea/node.js'
+
+- name: Install node.js
+  apt: pkg={{ item }} state=present update_cache=yes
+  with_items:
+    - nodejs
+

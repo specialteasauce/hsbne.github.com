@@ -1,0 +1,4 @@
+- name: Install Grunt
+  npm: name={{ item }} global=yes
+  with_items:
+    - grunt-cli

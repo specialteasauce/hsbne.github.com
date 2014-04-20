@@ -11,12 +11,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = "hsbne.dev.com"
   config.hostsupdater.aliases = []
 
+  #config.vm.synced_folder ".", "/vagrant", type: "nfs"
+
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "_deployment/vagrant.yml"
     ansible.inventory_path = "_deployment/hosts"
     ansible.limit = "development"
     #ansible.tags = []
-    ansible.verbose = 'vvvv'
+    #ansible.verbose = 'vvvv'
   end
   
 end
